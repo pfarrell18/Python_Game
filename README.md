@@ -29,13 +29,12 @@ Hey there {user_name}!
 Your virtual garden will start off looking like this: 
 
 
-Today is day 1 on DC_Crossing.
-
-[' ', ' ', ' ', ' ']
-  1    2    3    4
+    [' ', ' ', ' ', ' ']
+     1    2    3    4
 
 You will have the following choice options: 
- What would you like to do today?
+
+What would you like to do today?
         1.) New plant
         2.) Check plant water levels
         3.) Water a plant
@@ -45,25 +44,27 @@ You will have the following choice options:
 Should you pick option 1, it will prompt you with the type of flower you'd like and where you'd like to place it. 
 
 After selecting "New plant", your bed should look something like this: 
-['🌱', ' ', ' ', ' ']
-  1    2    3    4
+    ['🌱', ' ', ' ', ' ']
+       1    2    3    4
 
   As subsequent days pass, your plants will bloom!
 
-['🌻', '🌱', ' ', ' ']
-  1    2    3    4
+    ['🌻', '🌱', ' ', ' ']
+       1    2    3    4
 
 and you should will be able to harvest them for money by selecting #4!
 
 Once you have harvested your plants you will get a message like this and see your plot: 
-Congratulations!You now have 3💰💰 dollars!
-[' ', '🌱', ' ', ' ']
-  1    2    3    4
+
+    Congratulations!You now have 3💰💰 dollars!
+
+    [' ', '🌱', ' ', ' ']
+      1    2    3    4
 
   ***Note than only the bloom plants can be harvested!
 
 As subsequent turns pass, remember that if you don't wanter your plants as directed, they will die as pictured below. It will also die if you don't harvest your plant in 2 days!
 
-[' ', '❌', ' ', ' ']
+    [' ', '❌', ' ', ' ']
 
 At the end of the game, the program will print the top 3 scores on the leaderboards. I am keeping these scores on a local JSON file.
