@@ -5,7 +5,7 @@ Players have 10 days, each day represented by a decision, to plant, water, and h
 Game Instructions: 
 
 
-Hey there {user_name}! 
+    Hey there {user_name}! 
 
     this game is an optimization game.
 
@@ -45,8 +45,8 @@ Should you pick option 1, it will prompt you with the type of flower you'd like 
 
 After selecting "New plant", your bed should look something like this: 
 
-         ['🌱', ' ', ' ', ' ']
-            1    2    3    4
+    ['🌱', ' ', ' ', ' ']
+       1    2    3    4
 
   As subsequent days pass, your plants will bloom!
 
@@ -55,7 +55,7 @@ After selecting "New plant", your bed should look something like this:
 
 and you should will be able to harvest them for money by selecting #4!
 
-Once you have harvested your plants you will get a message like this and see your plot: 
+Once you have harvested your plants you will get a message like this and see your plot with the harvested plants gone: 
 
     Congratulations!You now have 3💰💰 dollars!
 
