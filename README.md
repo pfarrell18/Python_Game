@@ -44,6 +44,7 @@ You will have the following choice options:
 Should you pick option 1, it will prompt you with the type of flower you'd like and where you'd like to place it. 
 
 After selecting "New plant", your bed should look something like this: 
+
          ['🌱', ' ', ' ', ' ']
             1    2    3    4
 
@@ -68,3 +69,24 @@ As subsequent turns pass, remember that if you don't wanter your plants as direc
     [' ', '❌', ' ', ' ']
 
 At the end of the game, the program will print the top 3 scores on the leaderboards. I am keeping these scores on a local JSON file.
+
+    
+    💰💰💰 DC Crossing Leaderboard 💰💰💰
+
+
+
+    Place 1:
+                        Name: Ariadne
+                        Score: 33 coins
+                __________________________________
+                        
+    Place 2:
+                        Name: sonya
+                        Score: 22 coins
+                __________________________________
+                        
+    Place 3:
+                        Name: pri
+                        Score: 3 coins
+                __________________________________
+                        
