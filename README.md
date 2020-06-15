@@ -34,7 +34,7 @@ Your virtual garden will start off looking like this:
 
 You will have the following choice options: 
 
-What would you like to do today?
+    What would you like to do today?
         1.) New plant
         2.) Check plant water levels
         3.) Water a plant
@@ -44,8 +44,8 @@ What would you like to do today?
 Should you pick option 1, it will prompt you with the type of flower you'd like and where you'd like to place it. 
 
 After selecting "New plant", your bed should look something like this: 
-    ['🌱', ' ', ' ', ' ']
-       1    2    3    4
+        ['🌱', ' ', ' ', ' ']
+            1    2    3    4
 
   As subsequent days pass, your plants will bloom!
 
