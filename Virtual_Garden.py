@@ -1,4 +1,9 @@
+import json
+from typing import NamedTuple, List
+from HighScore import save_score, get_scores, Score
 
+
+NUMBER_OF_ROUNDS = 7
 class Garden (): 
     def __init__(self): 
         self.bed =  [" ", " "," ", " "]
@@ -39,7 +44,10 @@ class Garden ():
 
             if plant_number >= 1 or plant_number <=4: 
                 returned_val = self.replace_flower(plant_number)
-                return returned_val
+                if returned_val == None: 
+                    continue
+                else: 
+                    return returned_val
 
 
 
@@ -71,11 +79,11 @@ class Garden ():
             if self.plants[plant].bloom_days > 0: 
                 self.plants[plant].bloom_days -= 1
             elif self.plants[plant].bloom_days <= 0 and self.plants[plant].bloom_days > -3: 
-                print ("Your flower has bloomed!")
+                print ("Your flower has bloomed!\n")
                 self.bed[self.plants[plant].index] = self.plants[plant].display
                 self.plants[plant].bloom_days -= 1
             elif self.plants[plant].bloom_days == -2:
-                print ("Uh-oh!Your plant has died!")
+                print ("Uh-oh!Your plant has died!\n")
                 self.bed[self.plants[plant].index]= '❌'
             elif self.plants[plant].bloom_days == -3: 
                 self.bed[self.plants[plant].index] = " "
@@ -85,7 +93,7 @@ class Garden ():
         for plant in self.plants: 
             if self.plants[plant] == None:
                 continue
-            if self.plants[plant].bloom_days <=0 and self.plants[plant].bloom_days > -3:
+            if self.plants[plant].bloom_days <= -1 and self.plants[plant].bloom_days > -3:
                 self.bed[self.plants[plant].index] = " "
                 self.money += self.plants[plant].price
                 self.plants[plant] = None
@@ -94,7 +102,7 @@ class Garden ():
         
         print (F"""
         
-        Congratulations!You now have {self.money} dollars!
+        Congratulations!You now have {self.money}💰💰 dollars!
         
         
         """)
@@ -170,13 +178,13 @@ def set_flower_from_user ():
         print ("\033[93mSunflowers \033[00mwill bloom after 2 days.\n")
         new_plot.fill_bed()
         new_plot.print_bed()
-        plant_number= (new_plot.index)
+        plant_number = (new_plot.index)
         kind = "Sunflower"
         
     if type_of_plant == "c":
         print ("You picked a\033[95m cherry blossom\033[00m 🌸.\n")
-        print ("\033[95m Cherry blossoms \033[00mneed to be watered every 4 days.\n")
-        print ("\033[95m Cherry blossoms \033[00mwill bloom after 3 days.\n")
+        print ("\033[95m Cherry blossoms \033[00mneed to be watered every 2 days.\n")
+        print ("\033[95m Cherry blossoms \033[00mwill bloom after 5 days.\n")
         new_plot.fill_bed()
         new_plot.print_bed()
         plant_number= (new_plot.index)
@@ -185,7 +193,7 @@ def set_flower_from_user ():
     if type_of_plant == "h": 
         print ("You picked a\033[91m hibiscus\033[00m 🌺.\n")
         print ("\033[91m Hibiscuses \033[00mneed to be watered every 3 days.\n")
-        print ("\033[91m Hibiscuses \033[00mwill bloom after 3 days.\n")
+        print ("\033[91m Hibiscuses \033[00mwill bloom after 4 days.\n")
         new_plot.fill_bed()
         new_plot.print_bed()
         plant_number= (new_plot.index)
@@ -277,7 +285,7 @@ def water_plants():
         print (F"Your water level is {new_plot.plants['plant_three'].water_level}!\n")
     
     if number == 4: 
-        new.plot.plants['plant_four'].water_level += new_plot.plants['plant_four'].water_added
+        new_plot.plants['plant_four'].water_level += new_plot.plants['plant_four'].water_added
         print (F"Your water level is {new_plot.plants['plant_four'].water_level}!\n")
     
 
@@ -311,35 +319,66 @@ def get_water_levels():
 
 
 
-print ("Well hello there! Welcome to DC_Crossing.\n\n Before I explain how to play, I need to get some information about you!\n\n")
-
-user_name = input("What do you want your username to be? \n")
-
-icon_choice = input (f"Okay {user_name} and what icon would you like to use?\n a.) 🐯 b.)🐻 c.)🐨 or d.)🦄 \n")
 
 
-def icon_generator():
-    if icon_choice == 'a': 
-        return '🐯'
+counter = 0
+while counter < NUMBER_OF_ROUNDS: 
 
-    if icon_choice  =='b':
-        return '🐻' 
+    if counter ==0: 
+        print ("\n\nWell hello there! Welcome to DC_Crossing.\n\nBefore I explain how to play, I need to get some information about you!\n\n")
 
-    if icon_choice =='c':
-        return '🐨'  
+        user_name = input("What do you want your username to be? \n")
 
-    if icon_choice =='d':
-        return '🦄'
-    else: 
-        print ("You did not select a valid icon! Your default icon has been set to: 💩\n ")
-        return '💩'
+        icon_choice = input (f"Okay {user_name} and what icon would you like to use?\n a.) 🐯 b.)🐻 c.)🐨 or d.)🦄 \n")
 
 
-icon = icon_generator()
+        def icon_generator():
+            if icon_choice == 'a': 
+                return '🐯'
 
-counter = 1
-while counter < 15: 
-    print (f"Hey there {user_name} {icon}! Welcome to your garden!\n")
+            if icon_choice  =='b':
+                return '🐻' 
+
+            if icon_choice =='c':
+                return '🐨'  
+
+            if icon_choice =='d':
+                return '🦄'
+            
+            else: 
+                print ("You did not select a valid icon! Your default icon has been set to: 💩\n ")
+                return '💩'
+
+
+        icon = icon_generator()
+
+        instructions =  (F"""
+    Hey there {user_name} {icon}! 
+
+    this game is an optimization game.
+
+    You will have {NUMBER_OF_ROUNDS - 1} days to make the most money you can. Each decision you make represents a day.
+
+    You make money by 🌱 \033[92mgrowing\033[00m, \033[92mharvesting\033[00m and 💰\033[92mselling\033[00m bloomed flowers. 
+
+    In order for flowers to bloom, they must be \033[96mwatered\033[00m💦 when needed. Otherwise, they will \033[91m die\033[00m. ❌ ❌
+
+    Flowers that are not harvested within 2 days of blooming will also\033[91m die\033[00m. ❌ ❌
+
+    Flower \033[92mprices\033[00m are based on how long they take to bloom and how much they need to be \033[96mwatered\033[00m💦.
+
+    there are three flowers: 
+                        \033[93msunflowers\033[00m 🌻 can be sold for \033[92m 3 \033[00m dollars.
+                                \033[91mhibuscuses\033[00m 🌺 can be sold for\033[92m 6 \033[00m dollars.
+                                    \033[95mcherry blossoms\033[00m 🌸 can be sold for\033[92m 10 \033[00m dollars.
+                                
+    Now time to get \033[92mgrowing\033[00m!
+
+""")
+        print (instructions)
+        counter +=1
+
+
     print (f"Today is day {counter} on DC_Crossing.\n")
     
     new_plot.print_bed()
@@ -350,7 +389,7 @@ while counter < 15:
         1.) New plant
         2.) Check plant water levels
         3.) Water a plant
-        4.) Harvest your plants
+        4.) Harvest and sell your plants
         5.) quit game 
         """))
     
@@ -390,13 +429,39 @@ while counter < 15:
     if next_move == 4: 
         new_plot.harvest_plants()
 
-    if next_move == 5: 
-        print (F"See you next time {user_name}{icon}! :)")
-        exit ()
 
     new_plot.bloom_calc()
     new_plot.water_calc()
     counter +=1
     
+    
+    if counter == NUMBER_OF_ROUNDS or next_move== 5:
+        print (F"You earned {new_plot.money} 💰dollars this game!\n")
+        save_score(Score(user_name, new_plot.money))
+        print ("💰💰💰 DC Crossing Leaderboard 💰💰💰\n\n\n")
+        
+        for i in range(0,3):
+            print (F""" Place {i+1}:
+                        Name: {get_scores()[i].name}
+                        Score: {get_scores()[i].value} coins
+                __________________________________
+                        """)
+        
+        play_again = input("Do you want to play again Yes or No?\n").lower()
 
+        if play_again == "yes":
+            counter =0
+            new_plot.plants["plant_one"] = None
+            new_plot.plants["plant_two"] = None
+            new_plot.plants["plant_three"] = None
+            new_plot.plants["plant_four"] = None
+            new_plot.bed = [" ", " "," ", " "]
+            new_plot.money = 0
+            new_plot.index = None
+
+        
+        else: 
+            print (F"See you next time {user_name} {icon}! :)\n")
+            exit()
+    
     
